@@ -1,0 +1,15 @@
+
+# Database backup files can be large or contain sensitive data
+backups/*.dump
+backups/*.sql
+backups/*.backup
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+
+# Temporary files
+*.log
+*.tmp
+__pycache__/

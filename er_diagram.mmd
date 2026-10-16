@@ -1,0 +1,43 @@
+erDiagram
+    TENANTS ||--o{ BOOKS : owns
+    TENANTS ||--o{ MEMBERS : registers
+    TENANTS ||--o{ LOANS : records
+    BOOKS ||--o{ BOOK_AUTHORS : has
+    AUTHORS ||--o{ BOOK_AUTHORS : writes
+    MEMBERS ||--o{ LOANS : borrows
+    BOOKS ||--o{ LOANS : borrowed_in
+
+    TENANTS {
+        uuid tenant_id PK
+        varchar name
+    }
+    BOOKS {
+        uuid book_id PK
+        uuid tenant_id FK
+        varchar isbn
+        varchar title
+        varchar category
+    }
+    AUTHORS {
+        uuid author_id PK
+        varchar full_name
+    }
+    BOOK_AUTHORS {
+        uuid book_id PK,FK
+        uuid author_id PK,FK
+    }
+    MEMBERS {
+        uuid member_id PK
+        uuid tenant_id FK
+        varchar full_name
+        varchar email
+    }
+    LOANS {
+        uuid loan_id PK
+        uuid tenant_id FK
+        uuid member_id FK
+        uuid book_id FK
+        date checkout_date
+        date due_date
+        date returned_date
+    }
